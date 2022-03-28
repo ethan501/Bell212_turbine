@@ -9,13 +9,13 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/BellTurbineDB");
+mongoose.connect("mongodb://localhost:27017/BellPowerCheckFinalCVS");
 
 const calcSchema = {
   Alt: Number,
   Temp: Number,
   Torque: { type: Number },
-  ["Max ITT"]: Number,
+  ITT: Number,
   Delta: Number,
 };
 
@@ -36,8 +36,8 @@ app.post("/index", function (req, res) {
   deg = req.body.deg;
   torque = req.body.torque;
 
-  let torque1 = Number(torque) + 1;
-  let torque2 = Number(torque) - 1;
+  let torque1 = Number(torque) + 0.3;
+  let torque2 = Number(torque) - 0.3;
   torque1.toString();
   torque2.toString();
 
@@ -46,8 +46,8 @@ app.post("/index", function (req, res) {
   temp1.toString(); 
   temp2.toString();
 
-  let alt1 = Number(alt) + 1500;
-  let alt2 = Number(alt) - 1500; 
+  let alt1 = Number(alt) + 1000;
+  let alt2 = Number(alt) - 1000; 
   temp1.toString();
   temp2.toString();
 
@@ -62,11 +62,11 @@ app.post("/index", function (req, res) {
         console.log(calcs);
         calcs.forEach(function (calc) {
           const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
-          maxITT = calc["Max ITT"];
+          maxITT = calc.ITT;
           calcAvg.push(maxITT);
           console.log(maxITT);
 
-          averageMaxITT = average(calcAvg).toFixed(2);
+          averageMaxITT = average(calcAvg).toFixed(0);
 
           if (averageMaxITT == "NaN") {
             averageMaxITT = "Sorry no Max ITT matches those values";
