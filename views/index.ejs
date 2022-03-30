@@ -1,7 +1,7 @@
 <%-include("partials/header"); -%>
 
 <div class="lower">
-  <form action="index" method="post">
+  <form action="/index" method="post">
     <label>Torque (percent) 50% - 70%<br /></label>
     <input
       type="number"
@@ -38,9 +38,8 @@
     </div>
   </form>
   <div class="result">
-   <%if (averageMaxITT){%>
+   
     <p><strong>ITT:</strong> <%=averageMaxITT%></p>
-    <%}%>
   </div>
 </div>
 

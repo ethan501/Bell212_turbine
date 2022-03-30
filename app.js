@@ -24,11 +24,11 @@ const calcSchema = {
 };
 
 const Scores = mongoose.model("Scores", calcSchema);
-let averageMaxITT = 0;
+let averageMaxITT;
 app.get("/", function (req, res) {
-  
+  averageMaxITT = 0;
   res.render("index", { averageMaxITT: averageMaxITT });
-});
+
 let alt = 0;
 let deg = 0;
 let torque = 0;
@@ -70,7 +70,7 @@ app.post("/index", function (req, res) {
           maxITT = calc.ITT;
           calcAvg.push(maxITT);
           console.log(maxITT);
-
+          /* averageMaxITT = 2; */
           averageMaxITT = average(calcAvg).toFixed(0);
 
           if (averageMaxITT == "NaN") {
@@ -92,7 +92,7 @@ app.post("/index", function (req, res) {
     }
   );
 });
-
+});
 /* app.get("/index", function (req, res) {
   res.render
 }); */
