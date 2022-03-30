@@ -9,7 +9,11 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://Bell212:"+process.env.MONGOOSE_PS+"@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority");
+mongoose.connect(
+  "mongodb+srv://Bell212:" +
+    process.env.MONGOOSE_PS +
+    "@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority"
+);
 
 const calcSchema = {
   Alt: Number,
@@ -20,15 +24,16 @@ const calcSchema = {
 };
 
 const Scores = mongoose.model("Scores", calcSchema);
-
+let averageMaxITT = 0;
 app.get("/", function (req, res) {
-  res.render("index");
+  
+  res.render("index", { averageMaxITT: averageMaxITT });
 });
 let alt = 0;
 let deg = 0;
 let torque = 0;
 let maxITT = 0;
-let averageMaxITT = 0;
+
 
 app.post("/index", function (req, res) {
   let calcAvg = [];
@@ -42,12 +47,12 @@ app.post("/index", function (req, res) {
   torque2.toString();
 
   let temp1 = Number(deg) + 10;
-  let temp2 = Number(deg) - 10; 
-  temp1.toString(); 
+  let temp2 = Number(deg) - 10;
+  temp1.toString();
   temp2.toString();
 
   let alt1 = Number(alt) + 1000;
-  let alt2 = Number(alt) - 1000; 
+  let alt2 = Number(alt) - 1000;
   temp1.toString();
   temp2.toString();
 
@@ -73,7 +78,7 @@ app.post("/index", function (req, res) {
           }
         });
 
-        res.render("result", {
+        res.render("index", {
           calcs: calcs,
           maxITT: maxITT,
           averageMaxITT: averageMaxITT,

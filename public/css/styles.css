@@ -8,13 +8,21 @@
   }
 
   .head {
-    height: 150px;
+    height: 180px;
     background: linear-gradient(to right, #2193b0 , #6dd5ed);
     text-align: center;
   }
+
+  .logo{
+    position: absolute;
+    width: 181px;
+    height: 80px;
+    transform: translateX(-80px);
+  }
+
   h1{
       margin: 0;
-      padding-top: 30px;
+      padding-top: 80px;
       font-size: 25px;
       color: white;
       font-weight: 100;
@@ -22,7 +30,7 @@
   }
 
   .lower{
-      margin: 5px 8px 5px;
+      margin: 20px 8px 5px;
   }
 
 
@@ -33,10 +41,12 @@
       padding: 20px 0 20px;
   }
   input{
-      width: 80%;
+      width: 98%;
       background: transparent;
     border: none;
     border-bottom: 1px solid #000000;
+    font-size: larger;
+    
   }
 
 .button1{
@@ -64,6 +74,8 @@
 
   .result{
       margin: 20px 8px 20px;
+      font-size: larger;
+      text-align: center;
       
   }
 
