@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calc</title>
-  </head>
-  <body>
-    <h1>Testing the test</h1>
+<%-include("partials/header"); -%>
 
+
+  <div class="lower">
+    <p class="label1">Enter indicated values to get the max ITT.</p>
     <form action="index" method="post">
-      <label>Torque(percent) 50% - 70%</label>
-      <input type="number" step="1" name="torque" min="50" max="70" required /><br><br>
-      <label>Altitude (ft) 0ft - 10 000ft</label>
-      <input type="number" name="alt" step="1" min="0" max="10000" placeholder="Multiple of 1000" style="width: 150px;" required/><br><br>
-      <label>Temperature(c degrees) -50C- 30C</label>
-      <input type="number" name="deg" step="1" min="-50" max="30" placeholder="Multiples of 10" style="width: 150px;" required/><br><br>
-      
+      <label>Torque (percent) 50% - 70%<br></label>
+      <input type="number" autocomplete="off" step="1" name="torque" min="50" max="70" required /><br><br>
+      <label>Altitude (ft) 0ft - 10 000ft<br></label>
+      <input type="number" autocomplete="off" name="alt" step="1" min="0" max="10000" required/><br><br>
+      <label>Temperature (c degrees) -50&#8451; - 30&#8451;<br></label>
+      <input type="number" autocomplete="off" name="deg" step="1" min="-50" max="30"   required/><br><br>
+      <div class="button1">
       <button type="submit">Submit</button>
+    </div>
     </form>
+
+  </div>
    
-  </body>
-</html>
+    <%-include("partials/footer"); -%>

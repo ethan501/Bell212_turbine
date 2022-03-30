@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Result</title>
-  </head>
-  <body>
-    <h1>Result</h1>
-
-    <a href="/">Return to Calc</a>
-    <h3>Torque: <%=torque%></h3>
-    <h3>Altitude: <%=alt%></h3>
-    <h3>Temperature: <%=deg%></h3>
-
-    <h3>The max ITT is: <%=averageMaxITT%></h3>
-  </body>
-</html>
+<%-include("partials/header"); -%>
+    
+<div class="result">
+    <div class="values">
+      <h4>Values:</h4>
+      <ul>
+    <li>Torque: <%=torque%>%</li>
+    <li>Altitude: <%=alt%>ft</li>
+    <li>Temperature: <%=deg%>&#8451;</li>
+  </ul>
+  </div>
+  <h3>Result:</h3>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITT: <%=averageMaxITT%></p>
+    <div class="button1">
+    <a href="/">Return to Calculator</a>
+  </div>
+  </div>
+    <%-include("partials/footer"); -%>
