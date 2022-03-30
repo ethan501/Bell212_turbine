@@ -9,7 +9,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/BellPowerCheckFinalCVS");
+mongoose.connect("mongodb+srv://Bell212:"+process.env.MONGOOSE_PS+"@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority");
 
 const calcSchema = {
   Alt: Number,
@@ -92,6 +92,8 @@ app.post("/index", function (req, res) {
   res.render
 }); */
 
-app.listen(3000, function () {
-  console.log("server is running on port 3000");
-});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port);
