@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 mongoose.connect(
   "mongodb+srv://Bell212:" +
-    process.env.MONGOOSE_PS +
+    process.env.MONGOOSE_PS  +
     "@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority"
 );
 
@@ -25,14 +25,21 @@ const calcSchema = {
 
 const Scores = mongoose.model("Scores", calcSchema);
 let averageMaxITT;
-app.get("/", function (req, res) {
-  averageMaxITT = 0;
-  res.render("index", { averageMaxITT: averageMaxITT });
-
 let alt = 0;
 let deg = 0;
 let torque = 0;
 let maxITT = 0;
+app.get("/", function (req, res) {
+  averageMaxITT = 0;
+  alt = 0;
+  deg = 0;
+  torque = 0;
+  res.render("index", { averageMaxITT: averageMaxITT, alt:alt, deg:deg, torque:torque });
+
+
+
+
+
 
 
 app.post("/index", function (req, res) {
