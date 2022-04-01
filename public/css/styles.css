@@ -57,7 +57,7 @@
     display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0 20px;
+  padding: 10px 0 10px;
   
 }
 
@@ -65,7 +65,7 @@
       
       width: auto;
       color: black;
-      background: #2193b0;
+      background: #2ab4d6;
       border-radius: 12px;
      border-color: transparent;
       text-align: center;
