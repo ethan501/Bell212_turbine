@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 mongoose.connect(
   "mongodb+srv://Bell212:" +
-    process.env.MONGOOSE_PS +
+    process.env.MONGOOSE_PS  +
     "@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority"
 );
 
@@ -59,8 +59,8 @@ app.post("/index", function (req, res) {
   temp1.toString();
   temp2.toString();
 
-  let alt1 = Number(alt) + 500;
-  let alt2 = Number(alt) - 500;
+  let alt1 = Number(alt) + 1501;
+  let alt2 = Number(alt) - 1499;
   temp1.toString();
   temp2.toString();
 
@@ -120,7 +120,7 @@ app.post("/index", function (req, res) {
                   first.ITT +
                   ((temp - first.Temp) / (last.Temp - first.Temp)) *
                     (last.ITT - first.ITT);
-                delta = Math.round(delta * 10) / 10;
+                    itt = Math.round(itt * 100) / 100;
               }
               console.log(
                 "final itt \n" +

@@ -23,8 +23,9 @@
 
   h1{
       margin: 0;
-      padding-top: 120px;
-      padding-bottom: 20px;
+      
+      padding: 120px 5px 20px;
+      
       font-size: 25px;
       color: black;
       font-weight: bolder;
