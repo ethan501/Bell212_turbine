@@ -8,7 +8,8 @@
   }
 
   .head {
-    height: 180px;
+    height: auto;
+    min-height: 200px;
     background: linear-gradient(to right, #2193b0 , #6dd5ed);
     text-align: center;
   }
@@ -16,16 +17,19 @@
   .logo{
     position: absolute;
     width: 181px;
-    height: 80px;
-    transform: translateX(-89px);
+    height: 84.5px;
+    transform: translateX(-89px) translateY(20px);
   }
 
   h1{
       margin: 0;
-      padding-top: 80px;
+      padding-top: 120px;
+      padding-bottom: 20px;
       font-size: 25px;
-      color: white;
-      font-weight: 100;
+      color: black;
+      font-weight: bolder;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       
   }
 
@@ -60,7 +64,7 @@
   button{
       
       width: auto;
-      color: white;
+      color: black;
       background: #2193b0;
       border-radius: 12px;
      border-color: transparent;
@@ -69,6 +73,8 @@
       font-size: large;
       padding: 7px 10px 7px;
       cursor:pointer;
+      text-transform: uppercase;
+      font-weight: bold;
   }
 
 

@@ -31,7 +31,7 @@
       name="deg"
       step="1"
       min="-50"
-      max="30"
+      max="40"
       placeholder="<%=deg%>"
       required
     /><br /><br />
@@ -41,7 +41,8 @@
     </div>
   </form>
   <div class="result">
-   
+   <%if (typeof itt != "number"){%>
+    <%itt = "Entries do not fall within the scope of the ITT chart"}%>
     <p><strong>ITT:</strong> <%=itt%></p>
   </div>
 </div>

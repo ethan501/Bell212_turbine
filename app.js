@@ -59,8 +59,8 @@ app.post("/index", function (req, res) {
   temp1.toString();
   temp2.toString();
 
-  let alt1 = Number(alt) + 1000;
-  let alt2 = Number(alt) - 1000;
+  let alt1 = Number(alt) + 500;
+  let alt2 = Number(alt) - 500;
   temp1.toString();
   temp2.toString();
 
@@ -71,7 +71,8 @@ app.post("/index", function (req, res) {
       Torque: { $gt: torque2, $lt: torque1 },
     },
     function (err, calcs) {
-      if (!err) {
+      if (typeof calcs[0] != "undefined") {
+        
         console.log(
           "*************START OF ALGORITHM**************\nCalcs Grab \n" + calcs
         );
@@ -85,7 +86,8 @@ app.post("/index", function (req, res) {
         let last = calcs.length - 1;
         last = calcs[last];
         let first = calcs[0];
-        console.log("First and last gab for calcs \n" + last, first);
+        console.log("First and last grab for calcs \n" + last, first);
+
         let delta;
         if (first.Alt === last.Alt) {
           delta = first.Delta;
@@ -139,10 +141,25 @@ app.post("/index", function (req, res) {
 
         /* res.redirect("index"); */
       } else {
-        console.log(err);
+        console.log(err + "values inputted falls outside the itt chart");
+        itt = "";
+        res.render("index", {
+          itt: itt,
+          alt: alt,
+          deg: deg,
+          torque: torque,
+        });
       }
     }
   );
+});
+
+app.get("/index", function (req, res) {
+  itt = 0;
+  alt = 0;
+  deg = 0;
+  torque = 0;
+  res.render("index", { itt: itt, alt: alt, deg: deg, torque: torque });
 });
 
 /* app.get("/index", function (req, res) {
