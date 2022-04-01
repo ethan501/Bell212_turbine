@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 mongoose.connect(
   "mongodb+srv://Bell212:" +
-    /* process.env.MONGOOSE_PS */ "sNhHZMWUGJ4DDOHE" +
+    process.env.MONGOOSE_PS +
     "@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority"
 );
 
