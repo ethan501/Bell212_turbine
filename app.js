@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 mongoose.connect(
   "mongodb+srv://Bell212:" +
-    process.env.MONGOOSE_PS  +
+    /* process.env.MONGOOSE_PS */ "sNhHZMWUGJ4DDOHE" +
     "@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority"
 );
 
@@ -24,29 +24,30 @@ const calcSchema = {
 };
 
 const Scores = mongoose.model("Scores", calcSchema);
-let averageMaxITT;
+let itt;
 let alt = 0;
 let deg = 0;
 let torque = 0;
+let temp = 0;
 let maxITT = 0;
 app.get("/", function (req, res) {
-  averageMaxITT = 0;
+  itt = 0;
   alt = 0;
   deg = 0;
   torque = 0;
-  res.render("index", { averageMaxITT: averageMaxITT, alt:alt, deg:deg, torque:torque });
-
-
-
-
-
-
-
+  res.render("index", {
+    itt: itt,
+    alt: alt,
+    deg: deg,
+    torque: torque,
+  });
+});
 app.post("/index", function (req, res) {
   let calcAvg = [];
   alt = req.body.alt;
   deg = req.body.deg;
   torque = req.body.torque;
+  temp = req.body.deg;
 
   let torque1 = Number(torque) + 0.3;
   let torque2 = Number(torque) - 0.3;
@@ -71,35 +72,79 @@ app.post("/index", function (req, res) {
     },
     function (err, calcs) {
       if (!err) {
-        console.log(calcs);
-        calcs.forEach(function (calc) {
-          const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
-          maxITT = calc.ITT;
-          calcAvg.push(maxITT);
-          console.log(maxITT);
-          /* averageMaxITT = 2; */
-          averageMaxITT = average(calcAvg).toFixed(0);
+        console.log(
+          "*************START OF ALGORITHM**************\nCalcs Grab \n" + calcs
+        );
 
-          if (averageMaxITT == "NaN") {
-            averageMaxITT = "Sorry no Max ITT matches those values";
+        /* let delta = [];
+          calcs.forEach(function (calc) {
+            delta.push(calc.Delta);
+          });
+          console.log(delta); */
+
+        let last = calcs.length - 1;
+        last = calcs[last];
+        let first = calcs[0];
+        console.log("First and last gab for calcs \n" + last, first);
+        let delta;
+        if (first.Alt === last.Alt) {
+          delta = first.Delta;
+        } else {
+          delta =
+            first.Delta +
+            ((alt - first.Alt) / (last.Alt - first.Alt)) *
+              (last.Delta - first.Delta);
+        }
+        delta = Math.round(delta * 10) / 10;
+        console.log("The delta\n" + delta);
+        delta = Number(delta);
+        Scores.find(
+          {
+            Delta: delta,
+            Temp: { $gt: temp2, $lt: temp1 },
+            Alt: { $gt: alt2, $lt: alt1 },
+          },
+          function (err, partTwo) {
+            if (!err) {
+              console.log("the part two grab\n" + partTwo);
+              let last = partTwo.length - 1;
+              last = partTwo[last];
+              let first = partTwo[0];
+              console.log("first and last of part two grab \n" + last, first);
+              if (first.ITT === last.ITT) {
+                itt = first.ITT;
+              } else {
+                itt =
+                  first.ITT +
+                  ((temp - first.Temp) / (last.Temp - first.Temp)) *
+                    (last.ITT - first.ITT);
+                delta = Math.round(delta * 10) / 10;
+              }
+              console.log(
+                "final itt \n" +
+                  itt +
+                  "\n*********************END OF ALGORITHM*******************"
+              );
+              res.render("index", {
+                itt: itt,
+                alt: alt,
+                deg: deg,
+                torque: torque,
+              });
+            } else {
+              console.log(err);
+            }
           }
-        });
+        );
 
-        res.render("index", {
-          calcs: calcs,
-          maxITT: maxITT,
-          averageMaxITT: averageMaxITT,
-          alt: alt,
-          deg: deg,
-          torque: torque,
-        });
+        /* res.redirect("index"); */
       } else {
         console.log(err);
       }
     }
   );
 });
-});
+
 /* app.get("/index", function (req, res) {
   res.render
 }); */
