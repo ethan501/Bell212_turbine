@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 mongoose.connect(
   "mongodb+srv://Bell212:" +
-    process.env.MONGOOSE_PS  +
+    process.env.MONGOOSE_PS +
     "@cluster0.oakkp.mongodb.net/Bell212Power?retryWrites=true&w=majority"
 );
 
@@ -72,7 +72,6 @@ app.post("/index", function (req, res) {
     },
     function (err, calcs) {
       if (typeof calcs[0] != "undefined") {
-        
         console.log(
           "*************START OF ALGORITHM**************\nCalcs Grab \n" + calcs
         );
@@ -120,13 +119,16 @@ app.post("/index", function (req, res) {
                   first.ITT +
                   ((temp - first.Temp) / (last.Temp - first.Temp)) *
                     (last.ITT - first.ITT);
-                    itt = Math.round(itt * 100) / 100;
+                itt = Math.round(itt * 100) / 100;
               }
               console.log(
                 "final itt \n" +
                   itt +
                   "\n*********************END OF ALGORITHM*******************"
               );
+              if (itt >= 810) {
+                itt = "";
+              }
               res.render("index", {
                 itt: itt,
                 alt: alt,
@@ -141,7 +143,10 @@ app.post("/index", function (req, res) {
 
         /* res.redirect("index"); */
       } else {
-        console.log(err + "Invalid parameters: Confirm you have entered the correct values for a power check.");
+        console.log(
+          err +
+            "Invalid parameters: Confirm you have entered the correct values for a power check."
+        );
         itt = "";
         res.render("index", {
           itt: itt,
