@@ -54,8 +54,8 @@ app.post("/index", function (req, res) {
   torque1.toString();
   torque2.toString();
 
-  let temp1 = Number(deg) + 10;
-  let temp2 = Number(deg) - 10;
+  let temp1 = Number(deg) + 16;
+  let temp2 = Number(deg) - 16;
   temp1.toString();
   temp2.toString();
 
