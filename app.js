@@ -141,7 +141,7 @@ app.post("/index", function (req, res) {
 
         /* res.redirect("index"); */
       } else {
-        console.log(err + "values inputted falls outside the itt chart");
+        console.log(err + "Invalid parameters: Confirm you have entered the correct values for a power check.");
         itt = "";
         res.render("index", {
           itt: itt,
