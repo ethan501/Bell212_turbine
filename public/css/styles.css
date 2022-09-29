@@ -120,4 +120,21 @@ a {
   text-align: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .turbine-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80vw;
+  }
+
+  .turbine-description {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+    margin-bottom: 47px;
+  }
+}
+
 /* } */
