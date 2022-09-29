@@ -40,16 +40,26 @@
     /><br /><br />
     <div class="button1">
       <button type="submit">Calculate</button>
-      
     </div>
   </form>
   <div class="result">
-   <%if (typeof itt != "number"){%>
-    <p style="color: red;">Invalid parameters: Confirm you have entered the correct values for a power check.</p>
-      <%}else{%>
+    <%if (typeof itt != "number"){%>
+    <p style="color: red">
+      Invalid parameters: Confirm you have entered the correct values for a
+      power check.
+    </p>
+    <%}else{%>
     <p><strong>ITT:</strong> <%=itt%></p>
     <%}%>
   </div>
+  <hr />
+  <img src="images/TurbineEngine.jpeg" />
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quisquam
+    aliquam quasi nisi repudiandae reiciendis aperiam fugiat suscipit. Sequi
+    delectus molestias assumenda ducimus! Magni fugit inventore mollitia quae
+    amet sed.
+  </p>
 </div>
 
 <%-include("partials/footer"); -%>
