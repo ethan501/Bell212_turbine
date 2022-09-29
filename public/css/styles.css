@@ -113,4 +113,10 @@ a {
   width: 40vw;
 }
 
+.bottom {
+  min-height: 200px;
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  text-align: center;
+}
+
 /* } */
