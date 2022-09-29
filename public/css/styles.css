@@ -99,4 +99,10 @@ a {
   padding: 7px 10px 7px;
 }
 
+.turbine-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60vw;
+}
+
 /* } */
